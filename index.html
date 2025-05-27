@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AdiQuest</title>
+        <meta name="theme-color" content="#00ffff">
+        <link rel="manifest" href="manifest.json">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="MasAdi">
+        <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
+    </head>
+    <body class="dark-mode theme-default">
+        <section id="landing-page" class="page active">
+            <div class="landing-content">
+                <h1 class="glitch" data-text="AdiQuest">AdiQuest</h1>
+                <p>🚀 Masuki dimensi neon dan taklukkan misimu! 🌠</p>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="username">🏷️ Nama Petualang:</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                            placeholder="Ketik namamu..."
+                        >
+                    </div>
+                    <div class="form-group avatar-display-area">
+                        <label>✨ Avatar Pilihanmu:</label>
+                        <div id="emoji-preview-landing" class="emoji-preview-landing"></div>
+                        <button type="button" id="randomize-avatar-btn" class="neon-button small">Acak Avatar Lain 🎲</button>
+                    </div>
+                    <button type="submit" class="neon-button">Mulai Petualangan 🚀</button>
+                </form>
+            </div>
+        </section>
+        <div id="app-container" class="hidden">
+            <aside id="sidebar">
+                <div class="sidebar-header">
+                    <div id="user-avatar-sidebar-container">
+                        <div class="emoji-avatar-display" id="user-avatar-sidebar"></div>
+                    </div>
+                    <h2 id="user-name-sidebar">User</h2>
+                    <span id="user-title-sidebar" class="user-title"></span>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#" class="nav-link active" data-target="dashboard-section">
+                                <span class="nav-emoji">✨</span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="quest-section">
+                                <span class="nav-emoji">🎯</span>
+                                Quest
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="shop-section">
+                                <span class="nav-emoji">🛒</span>
+                                Shop
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="profile-section">
+                                <span class="nav-emoji">👤</span>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="achievements-section">
+                                <span class="nav-emoji">🏆</span>
+                                Achievements
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="skills-section">
+                                <span class="nav-emoji">🧠</span>
+                                Skills
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="settings-section">
+                                <span class="nav-emoji">⚙️</span>
+                                Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-target="event-section">
+                                <span class="nav-emoji">🎉</span>
+                                Event
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="interactive-character-container">
+                    <div id="interactive-character">🤖</div>
+                    <p class="character-status">Idle...</p>
+                </div>
+            </aside>
+            <main id="main-content">
+                <section id="dashboard-section" class="content-section active">
+                    <header>
+                        <h1>✨ Dashboard Utama</h1>
+                        <div class="user-stats">
+                            <div class="stat-item">
+                                🏅 Level:
+                                <span id="user-level">1</span>
+                                <span id="user-title-dashboard" class="user-title-small"></span>
+                            </div>
+                            <div class="stat-item xp-bar-container">
+                                <span>⚡ XP:</span>
+                                <progress id="user-xp" value="0" max="100"></progress>
+                                <span id="xp-text">0/100</span>
+                            </div>
+                            <div class="stat-item">
+                                💰 Koin:
+                                <span id="user-coins">0</span>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="dashboard-grid">
+                        <div class="card welcome-card">
+                            <h3>
+                                👋 Selamat Datang,
+                                <span id="welcome-username">Petualang</span>
+                                !
+                            </h3>
+                            <p>Jelajahi AdiQuest, selesaikan quest, dan kumpulkan item-item keren!</p>
+                        </div>
+                        <div class="card">
+                            <h3>📅 Quest Periodik</h3>
+                            <div id="periodic-quests-summary">
+                                <p>Cek daftar quest untuk tantangan harian!</p>
+                            </div>
+                            <button class="neon-button small" data-navigate="quest-section">Lihat Semua Quest</button>
+                        </div>
+                        <div class="card">
+                            <h3>🏆 Achievement Terbaru</h3>
+                            <p id="latest-achievement-summary">Belum ada achievement diraih.</p>
+                            <button class="neon-button small" data-navigate="achievements-section">Lihat Semua Achievements</button>
+                        </div>
+                        <div class="card">
+                            <h3>📰 Berita & Event</h3>
+                            <p id="current-event-summary">Tidak ada event aktif saat ini.</p>
+                            <button class="neon-button small" data-navigate="event-section">Info Event</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="quest-section" class="content-section hidden">
+                    <header>
+                        <h1>🎯 Daftar Quest</h1>
+                    </header>
+                    <div id="periodic-quest-list-container" class="quest-category-container">
+                        <h2>📅 Quest Periodik</h2>
+                        <div id="daily-quest-list" class="sub-quest-list">
+                            <h4>☀️ Harian</h4>
+                        </div>
+                        <div id="weekly-quest-list" class="sub-quest-list">
+                            <h4>🗓️ Mingguan</h4>
+                        </div>
+                        <div id="monthly-quest-list" class="sub-quest-list">
+                            <h4>🌙 Bulanan</h4>
+                        </div>
+                    </div>
+                    <div id="event-quest-list-container" class="quest-category-container hidden">
+                        <h2>🎉 Quest Event Aktif</h2>
+                        <div id="active-event-quest-list" class="sub-quest-list">
+                            {/* Quest Event dari JS */}
+                        </div>
+                    </div>
+                    <div id="template-quest-container" class="quest-category-container card">
+                        <h2>💡 Tambah Cepat dari Template</h2>
+                        <div id="template-quest-buttons"></div>
+                    </div>
+                    <div class="card add-quest-card">
+                        <h3>➕ Tambah Quest Pribadi</h3>
+                        <form id="add-quest-form">
+                            <div class="form-group">
+                                <label for="quest-title-input">Judul Quest:</label>
+                                <input
+                                    type="text"
+                                    id="quest-title-input"
+                                    placeholder="Contoh: Selesaikan Proyek XYZ"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="quest-desc-input">Deskripsi (opsional):</label>
+                                <textarea id="quest-desc-input" placeholder="Detail misi..."></textarea>
+                            </div>
+                            <button type="submit" class="neon-button">Tambah Quest +</button>
+                        </form>
+                    </div>
+                    <div id="user-quest-list-container" class="quest-category-container">
+                        <h2>📝 Quest Pribadimu</h2>
+                        <div id="quest-list"></div>
+                    </div>
+                </section>
+                <section id="shop-section" class="content-section hidden">
+                    <header>
+                        <h1>🛒 Toko Item 🌟</h1>
+                    </header>
+                    <div id="limited-time-shop-items" class="card hidden">
+                        <h3>⏳ Item Terbatas Waktu!</h3>
+                        <div id="limited-items-grid"></div>
+                    </div>
+                    <div class="shop-filters card">
+                        <h3>Kategori:</h3>
+                        <button class="filter-btn active" data-filter="all">🛍️ Semua</button>
+                        <button class="filter-btn" data-filter="skin">👕 Skin</button>
+                        <button class="filter-btn" data-filter="effect">✨ Efek</button>
+                        <button class="filter-btn" data-filter="badge">🎖️ Badge</button>
+                        <button class="filter-btn" data-filter="powerup">⚡ Power-up</button>
+                        <button class="filter-btn" data-filter="material">🧱 Material</button>
+                    </div>
+                    <div id="shop-items-grid"></div>
+                    <div id="crafting-section" class="card hidden">
+                        <h3>🛠️ Crafting Item</h3>
+                        <div id="craftable-items-list"></div>
+                    </div>
+                </section>
+                <section id="profile-section" class="content-section hidden">
+                    <header>
+                        <h1>👤 Profil Saya</h1>
+                    </header>
+                    <div class="profile-details card">
+                        <div id="profile-avatar-main-container">
+                            <div class="emoji-avatar-display profile-avatar-large" id="profile-avatar-main"></div>
+                        </div>
+                        <h2 id="profile-name-main">Nama User</h2>
+                        <span id="user-title-profile" class="user-title"></span>
+                        <p>
+                            🏅 Level:
+                            <span id="profile-level-main">1</span>
+                        </p>
+                        <p>
+                            ⚡ Total XP:
+                            <span id="profile-xp-total">0</span>
+                        </p>
+                        <p>
+                            💰 Koin:
+                            <span id="profile-coins-main">0</span>
+                        </p>
+                        <div class="profile-stats-grid">
+                            <div class="stat-box">
+                                Total Quest Selesai:
+                                <span id="total-quests-completed-stat">0</span>
+                            </div>
+                            <div class="stat-box">
+                                Achievement Diraih:
+                                <span id="achievements-unlocked-stat">0</span>
+                                /
+                                <span id="total-achievements-stat">0</span>
+                            </div>
+                        </div>
+                        <div class="owned-items-section">
+                            <h3>📦 Item yang Dimiliki:</h3>
+                            <ul id="owned-items-list">
+                                <li>Belum ada item.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section id="achievements-section" class="content-section hidden">
+                    <header>
+                        <h1>🏆 Achievements</h1>
+                    </header>
+                    <div id="achievements-grid" class="card-grid">
+                        {/* Achievements akan di-render di sini oleh JS */}
+                    </div>
+                </section>
+                <section id="skills-section" class="content-section hidden">
+                    <header>
+                        <h1>🧠 Skill Tree</h1>
+                    </header>
+                    <p>
+                        Skill Points Tersedia:
+                        <span id="skill-points-available">0</span>
+                    </p>
+                    <div id="skill-tree-grid" class="card-grid">
+                        {/* Skill tree akan di-render di sini oleh JS */}
+                    </div>
+                </section>
+                <section id="settings-section" class="content-section hidden">
+                    <header>
+                        <h1>⚙️ Pengaturan</h1>
+                    </header>
+                    <div class="settings-options card">
+                        <div class="setting-item">
+                            <label>🎨 Mode Tampilan:</label>
+                            <button id="theme-toggle-btn" class="neon-button small">
+                                <span>🌙</span>
+                                Ganti Mode
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <label>🌈 Skema Warna Neon:</label>
+                            <select id="color-scheme-selector" class="neon-select">
+                                {/* Opsi akan diisi oleh JS */}
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>🎶 Musik Latar:</label>
+                            <div class="volume-control">
+                                <button id="bgm-toggle-btn" class="neon-button small">🔊</button>
+                                <input
+                                    type="range"
+                                    id="bgm-volume"
+                                    min="0"
+                                    max="1"
+                                    step="0.05"
+                                    value="0.3"
+                                >
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>🔊 Efek Suara:</label>
+                            <div class="volume-control">
+                                <button id="sfx-toggle-btn" class="neon-button small">🔊</button>
+                                <input
+                                    type="range"
+                                    id="sfx-volume"
+                                    min="0"
+                                    max="1"
+                                    step="0.05"
+                                    value="0.5"
+                                >
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>⚠️ Reset Data Game:</label>
+                            <button id="reset-data-btn" class="danger-button small">Reset Semua Data</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="event-section" class="content-section hidden">
+                    <header>
+                        <h1>🎉 Event Spesial</h1>
+                    </header>
+                    <div id="active-event-details" class="event-details card hidden">
+                        <h2 id="active-event-title"></h2>
+                        <p id="active-event-description"></p>
+                        <p>
+                            🗓️ Periode:
+                            <span id="active-event-period"></span>
+                        </p>
+                        <p>
+                            🎁 Hadiah Utama:
+                            <span id="active-event-reward"></span>
+                        </p>
+                        <button class="neon-button" data-navigate="quest-section" id="go-to-event-quests-btn">Lihat Quest Event</button>
+                    </div>
+                    <div id="no-active-event" class="card">
+                        <h2>Tidak Ada Event Aktif</h2>
+                        <p>Pantau terus untuk event-event menarik selanjutnya!</p>
+                    </div>
+                    <div class="event-calendar card">
+                        <h3>Kalender Event (Contoh)</h3>
+                        <ul>
+                            <li>
+                                <strong>Minggu Ini:</strong>
+                                Festival Neon Lights (Quest Spesial!)
+                            </li>
+                            <li>
+                                <strong>Minggu Depan:</strong>
+                                Cybernetic Challenge Week
+                            </li>
+                            <li>
+                                <strong>Bulan Depan:</strong>
+                                Cosmic Glitch Discovery
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div id="notification-popup" class="hidden">
+            <span id="notification-emoji"></span>
+            <p id="notification-message"></p>
+        </div>
+        <div id="modal-container" class="modal-container hidden">
+            <div class="modal-content card">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <div id="modal-extra-content"></div>
+                <button id="modal-close-btn" class="neon-button small">Tutup</button>
+            </div>
+        </div>
+        <audio id="bgm" loop src="audio/background-music.mp3" autoplay></audio>
+        <audio id="sfx-click" src="audio/click.wav"></audio>
+        <audio id="sfx-hover" src="audio/hover.wav"></audio>
+        <audio id="sfx-level-up" src="audio/level-up.wav"></audio>
+        <audio id="sfx-quest-complete" src="audio/quest-complete.wav"></audio>
+        <audio id="sfx-purchase" src="audio/purchase.wav"></audio>
+        <audio id="sfx-warp" src="audio/warp.wav"></audio>
+        <audio id="sfx-achievement" src="audio/achievement.wav"></audio>
+        <audio id="sfx-skill-unlocked" src="audio/skill-unlocked.wav"></audio>
+        <script src="script.js"></script>
+    </body>
+</html>
