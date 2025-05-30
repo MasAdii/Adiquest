@@ -435,7 +435,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'ach_level_470', name: 'Level 470 Dicapai!', description: 'Kamu mencapai Level 470!', emoji: '4️⃣7️⃣0️⃣', condition: () => userData.level >= 470, reward: { xp: 450, coins: 450}},
         { id: 'ach_level_480', name: 'Level 480 Dicapai!', description: 'Kamu mencapai Level 480!', emoji: '4️⃣8️⃣0️⃣', condition: () => userData.level >= 480, reward: { xp: 450, coins: 450}},
         { id: 'ach_level_490', name: 'Level 490 Dicapai!', description: 'Kamu mencapai Level 490!', emoji: '4️⃣9️⃣0️⃣', condition: () => userData.level >= 490, reward: { xp: 450, coins: 450}},
-        { id: 'ach_level_460', name: 'Level 460 Dicapai!', description: 'Kamu mencapai Level 460!', emoji: '💻', condition: () => userData.level >= 460, reward: { xp: 450, coins: 450}},
         { id: 'ach_level_500', name: 'Entitas Kosmik Ultimate', description: 'Kamu mencapai Level 500 dan gelar baru!', emoji: '🌟', condition: () => userData.level >= 500, reward: { xp: 500, coins: 500, itemId: 'badge_cosmic_ultimate' } },
         
         { id: 'ach_first_quest', name: 'Quest Pertama Selesai', description: 'Kamu menyelesaikan quest pertamamu!', emoji: '🏁', condition: () => userData.stats.totalQuestsCompleted >= 1, reward: { xp: 20 } },
